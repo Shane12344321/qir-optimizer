@@ -1,11 +1,12 @@
 // Every compiler stage's real output for one program, side by side with the source.
 
 import { useMemo, useState } from 'react';
-import { formatAngle, outputDistribution, type COp, type Expr, type Stmt } from '@core';
+import { formatAngle, outputDistribution, type COp } from '@core';
 import { EXAMPLES } from '@engine/examples';
 import { runProgram } from '../lib/run';
 import { CodeView } from './CodeView';
 import { DagView } from './DagView';
+import { AstTree } from './AstTree';
 import { Circuit } from './Circuit';
 import { layoutCircuit, rowKeys } from '../lib/circuit';
 
@@ -21,41 +22,6 @@ const STAGES = [
 
 type StageId = (typeof STAGES)[number]['id'];
 
-function exprText(e: Expr): string {
-  switch (e.kind) {
-    case 'num': return String(e.value);
-    case 'pi': return 'π';
-    case 'id': return e.name;
-    case 'unary': return `−${exprText(e.arg)}`;
-    case 'binary': return `(${exprText(e.left)} ${e.op} ${exprText(e.right)})`;
-    case 'call': return `${e.fn}(${exprText(e.arg)})`;
-  }
-}
-
-function astLines(stmts: Stmt[]): string[] {
-  const out: string[] = ['Program'];
-  const arg = (a: { reg: string; index?: number }) => (a.index === undefined ? a.reg : `${a.reg}[${a.index}]`);
-  stmts.forEach((s, i) => {
-    const last = i === stmts.length - 1;
-    const p = last ? '└─ ' : '├─ ';
-    const c = last ? '   ' : '│  ';
-    switch (s.kind) {
-      case 'version': out.push(`${p}Version ${s.version}`); break;
-      case 'include': out.push(`${p}Include "${s.file}"`); break;
-      case 'qreg': case 'creg': out.push(`${p}${s.kind === 'qreg' ? 'QReg' : 'CReg'} ${s.name}[${s.size}]`); break;
-      case 'gatedef':
-        out.push(`${p}GateDef ${s.name}(${s.params.join(', ')}) ${s.qargs.join(', ')}`);
-        s.body.forEach((b, k) => out.push(`${c}${k === s.body.length - 1 ? '└─ ' : '├─ '}${b.kind === 'call' ? `Call ${b.name}${b.params.length ? `(${b.params.map(exprText).join(', ')})` : ''} ${b.args.map(arg).join(', ')}` : 'Barrier'}`));
-        break;
-      case 'call': out.push(`${p}Call ${s.name}${s.params.length ? `(${s.params.map(exprText).join(', ')})` : ''} ${s.args.map(arg).join(', ')}`); break;
-      case 'measure': out.push(`${p}Measure ${arg(s.q)} → ${arg(s.c)}`); break;
-      case 'reset': out.push(`${p}Reset ${arg(s.q)}`); break;
-      case 'barrier': out.push(`${p}Barrier ${s.args.map(arg).join(', ')}`); break;
-      case 'if': out.push(`${p}If ${s.creg} == ${s.value}`, `${c}└─ ${s.body.kind === 'call' ? `Call ${s.body.name} ${s.body.args.map(arg).join(', ')}` : s.body.kind}`); break;
-    }
-  });
-  return out;
-}
 
 function opLines(ops: COp[], names: string[], cnames: string[], depth = 0): string[] {
   const pad = '  '.repeat(depth);
@@ -107,7 +73,7 @@ export function PipelineExplorer({ initial = 'teleport', only }: { initial?: str
       </div>
     );
   } else if (stage === 'ast') {
-    body = <CodeView text={astLines(compile.ast.stmts).join('\n')} lang="qasm" maxHeight={380} />;
+    body = <AstTree stmts={compile.ast.stmts} />;
   } else if (stage === 'sema') {
     body = <CodeView text={[`; ${compile.circuit.numQubits} qubits: ${qn.join(' ')}`, `; ${compile.circuit.numResults} classical bits: ${cn.join(' ')}`, ...opLines(compile.circuit.ops, qn, cn)].join('\n')} lang="qasm" maxHeight={380} />;
   } else if (stage === 'qir') {
