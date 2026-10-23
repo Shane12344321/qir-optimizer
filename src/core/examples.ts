@@ -13,6 +13,48 @@ export interface Example {
 
 export const EXAMPLES: Example[] = [
   {
+    id: 'hybrid-demo',
+    title: 'Small hybrid program',
+    blurb: 'Three qubits, five gates, one if-statement.',
+    watch: 'q0 is set to 1 and copied onto q1, so measuring q1 always gives 1 and the if-branch can never run. Two H gates undo each other. Only 2 gates remain and the branch disappears.',
+    source: `OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[1];
+creg out[2];
+
+x q[0];                 // set q0 to 1
+cx q[0], q[1];          // copy q0 onto q1, so q1 is 1 too
+h q[2];
+h q[2];                 // two H gates in a row undo each other
+measure q[1] -> c[0];   // always reads 1
+if (c == 0) x q[2];     // can never happen
+measure q[0] -> out[0];
+measure q[2] -> out[1];
+`,
+  },
+  {
+    id: 'hybrid-demo-superposition',
+    title: 'Small hybrid program, q0 in superposition',
+    blurb: 'The same program, but q0 starts as a 50/50 mix.',
+    watch: 'Now q1 is random, so the measurement is random and the if-branch may run. The optimizer still removes the two H gates, but it keeps the CX and the branch, and explains why.',
+    source: `OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[1];
+creg out[2];
+
+h q[0];                 // q0 is now a 50/50 mix of 0 and 1
+cx q[0], q[1];          // q1 is linked to q0, so it is random too
+h q[2];
+h q[2];                 // two H gates in a row undo each other
+measure q[1] -> c[0];   // random: 0 or 1
+if (c == 0) x q[2];     // may happen
+measure q[0] -> out[0];
+measure q[2] -> out[1];
+`,
+  },
+  {
     id: 'basics',
     title: 'Basics: what cancels and what must not',
     blurb: 'Redundant gate pairs next to look-alikes that are not redundant.',

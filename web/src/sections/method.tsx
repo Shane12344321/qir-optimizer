@@ -15,20 +15,20 @@ import { runProgram } from '../lib/run';
 // ------------------------------------------------------------------ §4
 
 const STAGE_ROWS = [
-  ['Lexer', 'characters → tokens with spans', 'src/core/qasm/lexer.ts', 'M2'],
-  ['Parser', 'recursive descent, panic-mode and phrase-level recovery', 'src/core/qasm/parser.ts', 'M2'],
-  ['Semantic analysis', 'symbol tables, arity/bounds checks, constant folding, inlining', 'src/core/qasm/sema.ts', 'M2'],
-  ['IR generation', 'QIR Base/Adaptive Profile, opaque pointers', 'src/core/qasm/qirgen.ts', 'M2'],
-  ['QIR reader', 'LLVM IR text → module/block/instruction IR', 'src/core/qir/parser.ts', 'M3'],
-  ['Peephole', 'cancellation, commutation, merging along wires', 'src/core/opt/peephole.ts', 'M3'],
-  ['Hybrid const-prop', 'SCCP over qubits, results and SSA values', 'src/core/opt/qconst.ts', 'M3'],
-  ['CFG simplification', 'unreachable blocks, block merging', 'src/core/opt/cfg.ts', 'M3'],
-  ['Target legalization', 'Adaptive → Base Profile lowering', 'src/core/opt/profile.ts', 'M3'],
-  ['Pass manager', 'fixed point, trace, per-rewrite validation', 'src/core/opt/pipeline.ts', 'M1'],
-  ['Emitter', 'module → QIR text', 'src/core/qir/emitter.ts', 'M3'],
-  ['Simulator', 'state vector, branch enumeration, noise', 'src/core/sim/*.ts', 'M4'],
-  ['Equivalence checker', 'same outcomes, branch by branch', 'src/core/sim/equiv.ts', 'M4'],
-  ['CLI · walkthrough', 'qiropt; this page', 'src/cli, web/', 'M1'],
+  ['Lexer', 'characters → tokens with spans', 'src/core/qasm/lexer.ts'],
+  ['Parser', 'recursive descent, panic-mode and phrase-level recovery', 'src/core/qasm/parser.ts'],
+  ['Semantic analysis', 'symbol tables, arity/bounds checks, constant folding, inlining', 'src/core/qasm/sema.ts'],
+  ['IR generation', 'QIR Base/Adaptive Profile, opaque pointers', 'src/core/qasm/qirgen.ts'],
+  ['QIR reader', 'LLVM IR text → module/block/instruction IR', 'src/core/qir/parser.ts'],
+  ['Peephole', 'cancellation, commutation, merging along wires', 'src/core/opt/peephole.ts'],
+  ['Hybrid const-prop', 'SCCP over qubits, results and SSA values', 'src/core/opt/qconst.ts'],
+  ['CFG simplification', 'unreachable blocks, block merging', 'src/core/opt/cfg.ts'],
+  ['Target legalization', 'Adaptive → Base Profile lowering', 'src/core/opt/profile.ts'],
+  ['Pass manager', 'fixed point, trace, per-rewrite validation', 'src/core/opt/pipeline.ts'],
+  ['Emitter', 'module → QIR text', 'src/core/qir/emitter.ts'],
+  ['Simulator', 'state vector, branch enumeration, noise', 'src/core/sim/*.ts'],
+  ['Equivalence checker', 'same outcomes, branch by branch', 'src/core/sim/equiv.ts'],
+  ['CLI · walkthrough', 'qiropt; this page', 'src/cli, web/'],
 ];
 
 export function System() {
@@ -47,14 +47,14 @@ export function System() {
       </>
     }>
       <p className="lede">The compiler is a classic three-part pipeline around QIR. A front-end lowers OpenQASM to QIR, a middle-end optimizes QIR to a fixed point, and a verification back-end proves the result.</p>
-      <Figure n="5" caption={<>Every stage's real output for one program. The source stays on the left; choose a stage on the right. "Owner" maps each stage to a team member (§13).</>}>
+      <Figure n="5" caption={<>Every stage's real output for one program. The source stays on the left; choose a stage on the right.</>}>
         <PipelineExplorer />
       </Figure>
-      <TableCap n={2}>Implementation map: every stage, its source file and its owner.</TableCap>
+      <TableCap n={2}>Implementation map: every stage and its source file.</TableCap>
       <div className="tablewrap">
         <table>
-          <thead><tr><th>Stage</th><th>What it does</th><th>Source</th><th>Owner</th></tr></thead>
-          <tbody>{STAGE_ROWS.map(([a, b, c, d]) => <tr key={a}><td><strong>{a}</strong></td><td>{b}</td><td><code>{c}</code></td><td>{d}</td></tr>)}</tbody>
+          <thead><tr><th>Stage</th><th>What it does</th><th>Source</th></tr></thead>
+          <tbody>{STAGE_ROWS.map(([a, b, c]) => <tr key={a}><td><strong>{a}</strong></td><td>{b}</td><td><code>{c}</code></td></tr>)}</tbody>
         </table>
       </div>
     </Section>

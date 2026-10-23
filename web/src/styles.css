@@ -410,3 +410,19 @@ body.audience .scene-notes { display: none; }
 @media (max-width: 700px) { .gate-legend { grid-template-columns: minmax(0, 1fr); } }
 
 .explorer-circuit { border-bottom: 1px solid var(--ink); }
+
+.with-about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 30%); gap: 24px; align-items: start; }
+.about { border-left: 1px solid var(--rule); padding-left: 18px; font-size: clamp(15px, 1.05vw, 18px); line-height: 1.45; color: var(--ink-2); }
+.about h4 { margin: 0 0 6px; font-family: var(--label); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); }
+.about p { margin: 0 0 8px; }
+.about ol { margin: 0; padding-left: 18px; }
+.about li { margin: 0 0 5px; }
+@media (max-width: 1180px) { .with-about { grid-template-columns: minmax(0, 1fr); } .about { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 10px; } }
+
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.compare .plate { display: flex; flex-direction: column; }
+.compare .plate.us { border-width: 2px; border-color: var(--accent); }
+.compare .plate-body { flex: 1; }
+.compare-foot { border-top: 1px solid var(--rule); padding: 12px 16px 14px; }
+.compare-foot p { margin: 8px 0 0; font-size: clamp(15px, 1.05vw, 18px); line-height: 1.4; }
+@media (max-width: 1180px) { .compare { grid-template-columns: minmax(0, 1fr); } }

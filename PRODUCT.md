@@ -36,12 +36,12 @@ Related recent work exists and must be acknowledged, not denied: Relaxed Peephol
 - The real engine runs in the page: QASM lexer/parser/semantic analysis, QIR generation, QIR parsing, the dependence DAG, peephole passes, hybrid constant propagation, CFG simplification, profile lowering, state-vector simulation, equivalence checking, noisy sampling and the naive (unsafe) optimizer.
 - LLVM validation (clang/llvm-as) runs only on the command line, not in the browser.
 - Simulation is limited to about 20 qubits in the browser.
-- Member names for Members 2–4 are undecided; use role placeholders (Member 1 is Shane, lead/integration).
+- Team member details are intentionally not shown anywhere in the presentation (user decision).
 
 ## Evidence on Hand
 
-- Benchmark results: `bench/results.json`, produced by `qiropt bench` (22 programs, ablation of three pass configurations, ESP and simulated success).
-- Test suite: 65 tests covering exhaustive rule soundness, property tests over random programs, LLVM verification, and front-end diagnostics.
+- Benchmark results: `bench/results.json`, produced by `qiropt bench` (24 programs, ablation of three pass configurations, ESP and simulated success).
+- Test suite: 69 tests covering exhaustive rule soundness, property tests over random programs, LLVM verification, and front-end diagnostics.
 - Example programs: `src/core/examples.ts`.
 - There are no real-hardware runs. Any hardware result would be fabricated; the noise model is simulated and must be labelled as such.
 

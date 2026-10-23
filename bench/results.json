@@ -1,11 +1,111 @@
 {
-  "generated": "2026-10-23T08:31:34.456Z",
+  "generated": "2026-10-23T09:19:47.291Z",
   "noise": {
     "p1": 0.002,
     "p2": 0.015,
     "readout": 0.01
   },
   "rows": [
+    {
+      "id": "hybrid-demo",
+      "family": "example",
+      "qubits": 3,
+      "before": {
+        "gates": 5,
+        "twoQubit": 1,
+        "depth": 5,
+        "blocks": 3
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 3
+          },
+          "timeMs": 1.5261659999999893,
+          "rewrites": 1
+        },
+        "peephole": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 3
+          },
+          "timeMs": 0.17866700000001856,
+          "rewrites": 1
+        },
+        "full": {
+          "after": {
+            "gates": 2,
+            "twoQubit": 0,
+            "depth": 2,
+            "blocks": 1
+          },
+          "timeMs": 1.390749999999997,
+          "rewrites": 9
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.93389964418713,
+      "espAfter": 0.966421685196,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9364999999999999,
+      "successAfter": 0.9585000000000001
+    },
+    {
+      "id": "hybrid-demo-superposition",
+      "family": "example",
+      "qubits": 3,
+      "before": {
+        "gates": 5,
+        "twoQubit": 1,
+        "depth": 5,
+        "blocks": 3
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 3
+          },
+          "timeMs": 0.11487500000001205,
+          "rewrites": 1
+        },
+        "peephole": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 3
+          },
+          "timeMs": 0.06774999999998954,
+          "rewrites": 1
+        },
+        "full": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 3
+          },
+          "timeMs": 0.25483400000001666,
+          "rewrites": 1
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.93389964418713,
+      "espAfter": 0.9376464795192891,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9391707911641848,
+      "successAfter": 0.9446069345406448
+    },
     {
       "id": "basics",
       "family": "example",
@@ -24,7 +124,7 @@
             "depth": 6,
             "blocks": 1
           },
-          "timeMs": 0.5867079999999874,
+          "timeMs": 0.11658399999998892,
           "rewrites": 3
         },
         "peephole": {
@@ -34,7 +134,7 @@
             "depth": 5,
             "blocks": 1
           },
-          "timeMs": 0.2166249999999934,
+          "timeMs": 0.2118340000000103,
           "rewrites": 4
         },
         "full": {
@@ -44,7 +144,7 @@
             "depth": 5,
             "blocks": 1
           },
-          "timeMs": 0.6479160000000093,
+          "timeMs": 0.14962500000001455,
           "rewrites": 4
         }
       },
@@ -74,7 +174,7 @@
             "depth": 26,
             "blocks": 3
           },
-          "timeMs": 0.18508299999999167,
+          "timeMs": 0.13887500000004138,
           "rewrites": 0
         },
         "peephole": {
@@ -84,7 +184,7 @@
             "depth": 26,
             "blocks": 3
           },
-          "timeMs": 0.17475000000001728,
+          "timeMs": 0.17500000000001137,
           "rewrites": 0
         },
         "full": {
@@ -94,7 +194,7 @@
             "depth": 2,
             "blocks": 1
           },
-          "timeMs": 0.7302500000000123,
+          "timeMs": 0.4847920000000272,
           "rewrites": 38
         }
       },
@@ -124,7 +224,7 @@
             "depth": 26,
             "blocks": 3
           },
-          "timeMs": 0.14812499999993634,
+          "timeMs": 0.17533400000002075,
           "rewrites": 0
         },
         "peephole": {
@@ -134,7 +234,7 @@
             "depth": 26,
             "blocks": 3
           },
-          "timeMs": 0.13816699999995308,
+          "timeMs": 0.1553750000000491,
           "rewrites": 0
         },
         "full": {
@@ -144,7 +244,7 @@
             "depth": 18,
             "blocks": 1
           },
-          "timeMs": 0.4448330000000169,
+          "timeMs": 0.45279100000004746,
           "rewrites": 17
         }
       },
@@ -174,7 +274,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.15916700000002493,
+          "timeMs": 0.1356670000000122,
           "rewrites": 4
         },
         "peephole": {
@@ -184,7 +284,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.16391599999997197,
+          "timeMs": 0.14641600000004473,
           "rewrites": 5
         },
         "full": {
@@ -194,7 +294,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.28587500000003274,
+          "timeMs": 0.3758749999999509,
           "rewrites": 5
         }
       },
@@ -224,7 +324,7 @@
             "depth": 9,
             "blocks": 5
           },
-          "timeMs": 0.07650000000012369,
+          "timeMs": 0.07254199999988487,
           "rewrites": 0
         },
         "peephole": {
@@ -234,7 +334,7 @@
             "depth": 9,
             "blocks": 5
           },
-          "timeMs": 0.05491699999993216,
+          "timeMs": 0.055041000000073836,
           "rewrites": 0
         },
         "full": {
@@ -244,7 +344,7 @@
             "depth": 9,
             "blocks": 5
           },
-          "timeMs": 0.2052080000000842,
+          "timeMs": 0.1796670000001086,
           "rewrites": 0
         }
       },
@@ -274,7 +374,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.09375,
+          "timeMs": 0.09333300000002964,
           "rewrites": 0
         },
         "peephole": {
@@ -284,7 +384,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.0861250000000382,
+          "timeMs": 0.11837500000001455,
           "rewrites": 0
         },
         "full": {
@@ -294,7 +394,7 @@
             "depth": 2,
             "blocks": 1
           },
-          "timeMs": 0.16704200000003766,
+          "timeMs": 0.17479100000014114,
           "rewrites": 23
         }
       },
@@ -324,7 +424,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.10391600000002654,
+          "timeMs": 0.10470900000018446,
           "rewrites": 0
         },
         "peephole": {
@@ -334,7 +434,7 @@
             "depth": 19,
             "blocks": 1
           },
-          "timeMs": 0.08491700000013225,
+          "timeMs": 0.08937500000001819,
           "rewrites": 0
         },
         "full": {
@@ -344,7 +444,7 @@
             "depth": 14,
             "blocks": 1
           },
-          "timeMs": 0.19262499999990723,
+          "timeMs": 0.1967090000000553,
           "rewrites": 6
         }
       },
@@ -374,7 +474,7 @@
             "depth": 29,
             "blocks": 1
           },
-          "timeMs": 0.12412500000004911,
+          "timeMs": 0.1227920000001177,
           "rewrites": 0
         },
         "peephole": {
@@ -384,7 +484,7 @@
             "depth": 29,
             "blocks": 1
           },
-          "timeMs": 0.10904100000016115,
+          "timeMs": 0.1145000000001346,
           "rewrites": 0
         },
         "full": {
@@ -394,7 +494,7 @@
             "depth": 2,
             "blocks": 1
           },
-          "timeMs": 0.2575419999998303,
+          "timeMs": 0.2708749999999327,
           "rewrites": 39
         }
       },
@@ -424,7 +524,7 @@
             "depth": 29,
             "blocks": 1
           },
-          "timeMs": 0.16258299999981318,
+          "timeMs": 0.12012499999991633,
           "rewrites": 0
         },
         "peephole": {
@@ -434,7 +534,7 @@
             "depth": 29,
             "blocks": 1
           },
-          "timeMs": 0.14858400000002803,
+          "timeMs": 0.1042499999998654,
           "rewrites": 0
         },
         "full": {
@@ -444,7 +544,7 @@
             "depth": 24,
             "blocks": 1
           },
-          "timeMs": 1.0042090000001735,
+          "timeMs": 0.21633299999984956,
           "rewrites": 6
         }
       },
@@ -474,7 +574,7 @@
             "depth": 39,
             "blocks": 1
           },
-          "timeMs": 0.21537499999976717,
+          "timeMs": 0.17487500000061118,
           "rewrites": 0
         },
         "peephole": {
@@ -484,7 +584,7 @@
             "depth": 39,
             "blocks": 1
           },
-          "timeMs": 0.24279099999967002,
+          "timeMs": 0.1382499999999709,
           "rewrites": 0
         },
         "full": {
@@ -494,7 +594,7 @@
             "depth": 2,
             "blocks": 1
           },
-          "timeMs": 1.38799999999992,
+          "timeMs": 0.3785409999991316,
           "rewrites": 55
         }
       },
@@ -524,7 +624,7 @@
             "depth": 39,
             "blocks": 1
           },
-          "timeMs": 2.1135419999991427,
+          "timeMs": 0.1446250000008149,
           "rewrites": 0
         },
         "peephole": {
@@ -534,7 +634,7 @@
             "depth": 39,
             "blocks": 1
           },
-          "timeMs": 3.7239170000029844,
+          "timeMs": 0.14737499999682768,
           "rewrites": 0
         },
         "full": {
@@ -544,7 +644,7 @@
             "depth": 34,
             "blocks": 1
           },
-          "timeMs": 4.047375000001921,
+          "timeMs": 0.3516249999993306,
           "rewrites": 6
         }
       },
@@ -574,7 +674,7 @@
             "depth": 28,
             "blocks": 1
           },
-          "timeMs": 0.5812079999959678,
+          "timeMs": 0.18787499999962165,
           "rewrites": 1
         },
         "peephole": {
@@ -584,7 +684,7 @@
             "depth": 26,
             "blocks": 1
           },
-          "timeMs": 2.063084000001254,
+          "timeMs": 0.2629579999993439,
           "rewrites": 4
         },
         "full": {
@@ -594,7 +694,7 @@
             "depth": 17,
             "blocks": 1
           },
-          "timeMs": 0.3546669999996084,
+          "timeMs": 0.3370000000031723,
           "rewrites": 17
         }
       },
@@ -624,7 +724,7 @@
             "depth": 44,
             "blocks": 1
           },
-          "timeMs": 0.2461669999975129,
+          "timeMs": 0.24395799999911105,
           "rewrites": 1
         },
         "peephole": {
@@ -634,7 +734,7 @@
             "depth": 42,
             "blocks": 1
           },
-          "timeMs": 0.3101250000036089,
+          "timeMs": 0.43562499999825377,
           "rewrites": 8
         },
         "full": {
@@ -644,7 +744,7 @@
             "depth": 17,
             "blocks": 1
           },
-          "timeMs": 0.5549579999933485,
+          "timeMs": 0.5710829999989073,
           "rewrites": 46
         }
       },
@@ -674,7 +774,7 @@
             "depth": 60,
             "blocks": 1
           },
-          "timeMs": 0.39054200000100536,
+          "timeMs": 0.4004580000000715,
           "rewrites": 1
         },
         "peephole": {
@@ -684,7 +784,7 @@
             "depth": 57,
             "blocks": 1
           },
-          "timeMs": 0.589417000002868,
+          "timeMs": 0.5631670000002487,
           "rewrites": 14
         },
         "full": {
@@ -694,7 +794,7 @@
             "depth": 31,
             "blocks": 1
           },
-          "timeMs": 1.3453749999971478,
+          "timeMs": 0.8364999999976135,
           "rewrites": 52
         }
       },
@@ -724,7 +824,7 @@
             "depth": 62,
             "blocks": 1
           },
-          "timeMs": 0.44366699999955017,
+          "timeMs": 0.4452500000006694,
           "rewrites": 15
         },
         "peephole": {
@@ -734,7 +834,7 @@
             "depth": 57,
             "blocks": 1
           },
-          "timeMs": 1.0046670000010636,
+          "timeMs": 0.7088750000002619,
           "rewrites": 25
         },
         "full": {
@@ -744,7 +844,7 @@
             "depth": 48,
             "blocks": 1
           },
-          "timeMs": 0.8450410000004922,
+          "timeMs": 0.801792000002024,
           "rewrites": 36
         }
       },
@@ -774,7 +874,7 @@
             "depth": 73,
             "blocks": 9
           },
-          "timeMs": 0.5158339999979944,
+          "timeMs": 0.5208329999986745,
           "rewrites": 9
         },
         "peephole": {
@@ -784,7 +884,7 @@
             "depth": 61,
             "blocks": 9
           },
-          "timeMs": 0.6145410000026459,
+          "timeMs": 0.7594590000007884,
           "rewrites": 25
         },
         "full": {
@@ -794,7 +894,7 @@
             "depth": 57,
             "blocks": 9
           },
-          "timeMs": 1.754916999998386,
+          "timeMs": 2.3180840000022727,
           "rewrites": 39
         }
       },
@@ -824,7 +924,7 @@
             "depth": 92,
             "blocks": 1
           },
-          "timeMs": 1.0299169999998412,
+          "timeMs": 0.9951670000009472,
           "rewrites": 32
         },
         "peephole": {
@@ -834,7 +934,7 @@
             "depth": 75,
             "blocks": 1
           },
-          "timeMs": 1.4937919999938458,
+          "timeMs": 1.4498750000020664,
           "rewrites": 60
         },
         "full": {
@@ -844,7 +944,7 @@
             "depth": 65,
             "blocks": 1
           },
-          "timeMs": 2.178750000006403,
+          "timeMs": 1.935124999999971,
           "rewrites": 84
         }
       },
@@ -874,7 +974,7 @@
             "depth": 80,
             "blocks": 11
           },
-          "timeMs": 3.581833000003826,
+          "timeMs": 1.3527919999978621,
           "rewrites": 33
         },
         "peephole": {
@@ -884,7 +984,7 @@
             "depth": 68,
             "blocks": 11
           },
-          "timeMs": 1.562832999996317,
+          "timeMs": 1.3735000000015134,
           "rewrites": 61
         },
         "full": {
@@ -894,7 +994,7 @@
             "depth": 55,
             "blocks": 11
           },
-          "timeMs": 3.53058400000009,
+          "timeMs": 3.2116669999995793,
           "rewrites": 105
         }
       },
@@ -924,7 +1024,7 @@
             "depth": 157,
             "blocks": 1
           },
-          "timeMs": 2.5944999999992433,
+          "timeMs": 2.7974580000009155,
           "rewrites": 73
         },
         "peephole": {
@@ -934,7 +1034,7 @@
             "depth": 138,
             "blocks": 1
           },
-          "timeMs": 3.4694579999995767,
+          "timeMs": 3.1090839999997115,
           "rewrites": 123
         },
         "full": {
@@ -944,7 +1044,7 @@
             "depth": 133,
             "blocks": 1
           },
-          "timeMs": 3.983582999993814,
+          "timeMs": 3.976958999999624,
           "rewrites": 145
         }
       },
@@ -974,7 +1074,7 @@
             "depth": 153,
             "blocks": 27
           },
-          "timeMs": 3.317332999999053,
+          "timeMs": 3.8619590000016615,
           "rewrites": 65
         },
         "peephole": {
@@ -984,7 +1084,7 @@
             "depth": 143,
             "blocks": 27
           },
-          "timeMs": 3.8452499999984866,
+          "timeMs": 3.5557079999998678,
           "rewrites": 117
         },
         "full": {
@@ -994,7 +1094,7 @@
             "depth": 122,
             "blocks": 27
           },
-          "timeMs": 10.211875000000873,
+          "timeMs": 12.652750000001106,
           "rewrites": 207
         }
       },
@@ -1024,7 +1124,7 @@
             "depth": 293,
             "blocks": 1
           },
-          "timeMs": 6.329125000003842,
+          "timeMs": 4.922082999997656,
           "rewrites": 152
         },
         "peephole": {
@@ -1034,7 +1134,7 @@
             "depth": 249,
             "blocks": 1
           },
-          "timeMs": 10.729124999998021,
+          "timeMs": 7.569250000000466,
           "rewrites": 285
         },
         "full": {
@@ -1044,7 +1144,7 @@
             "depth": 226,
             "blocks": 1
           },
-          "timeMs": 15.315291999999317,
+          "timeMs": 12.232875000001513,
           "rewrites": 348
         }
       },
@@ -1074,7 +1174,7 @@
             "depth": 262,
             "blocks": 43
           },
-          "timeMs": 12.46787499999482,
+          "timeMs": 11.06358299999556,
           "rewrites": 131
         },
         "peephole": {
@@ -1084,7 +1184,7 @@
             "depth": 227,
             "blocks": 43
           },
-          "timeMs": 13.439750000005006,
+          "timeMs": 12.06699999999546,
           "rewrites": 234
         },
         "full": {
@@ -1094,7 +1194,7 @@
             "depth": 208,
             "blocks": 43
           },
-          "timeMs": 38.43787500000326,
+          "timeMs": 28.055625000000873,
           "rewrites": 335
         }
       },

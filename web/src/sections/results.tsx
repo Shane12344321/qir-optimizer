@@ -262,12 +262,6 @@ export function Limits() {
 
 // ------------------------------------------------------------------ §13
 
-const MATRIX = [
-  ['Member 1 · Shane', 'Architecture, pass manager, CLI, this walkthrough, integration', 'src/core/opt/pipeline.ts, src/cli/, web/', 'tests/optimizer.test.ts (examples)', '§0, §4, §11'],
-  ['Member 2', 'Front-end: lexer, parser, semantic analysis, QIR generation', 'src/core/qasm/*', 'tests/frontend.test.ts', '§5'],
-  ['Member 3', 'Middle-end: QIR reader/emitter, peephole, hybrid constant propagation, CFG passes', 'src/core/qir/*, src/core/opt/{peephole,qconst,cfg,profile}.ts', 'tests/rules.test.ts, optimizer tests', '§6, §7'],
-  ['Member 4', 'Verification: simulator, equivalence checker, random testing, benchmarks', 'src/core/sim/*, src/core/random.ts, src/core/bench.ts', 'tests/property.test.ts, tests/llvm.test.ts', '§8, §10'],
-];
 
 const DEMO = [
   ['1. Environment', 'Terminal: npm ci && npm test → qiropt --version', '§10 test list'],
@@ -292,31 +286,21 @@ const VIVA: [string, string][] = [
 
 export function Team() {
   return (
-    <Section id="team" num="13" title="Contributions, demonstration and viva" wide side={
+    <Section id="team" num="13" title="Demonstration and viva" wide side={
       <>
         <Say>
-          <p>Each member demonstrates the sections in their row of the matrix and opens their own source files when asked. Run the demonstration in the order of the second table: it is the Review 3 guideline's seven-stage sequence.</p>
+          <p>Run the demonstration in the order of the table: it is the Review 3 guideline's seven-stage sequence.</p>
         </Say>
         <Note title="Before the review">
           <ul>
-            <li>Replace the Member 2–4 placeholders with names.</li>
-            <li>Make each member's commits touch the files in their row.</li>
             <li>Run <code>npm run evidence</code> on the demo laptop.</li>
             <li>Rehearse with presenter notes off (<kbd>N</kbd>).</li>
           </ul>
         </Note>
       </>
     }>
-      <h3 style={{ marginTop: 0 }}>Contribution matrix</h3>
-      <TableCap n={8}>Technical ownership, evidence and presentation duty per member.</TableCap>
-      <div className="tablewrap">
-        <table>
-          <thead><tr><th>Member</th><th>Technical ownership</th><th>Source</th><th>Tests</th><th>Presents</th></tr></thead>
-          <tbody>{MATRIX.map((r) => <tr key={r[0]}>{r.map((c, i) => <td key={i}>{i === 2 || i === 3 ? <code style={{ fontSize: 12 }}>{c}</code> : i === 0 ? <strong>{c}</strong> : c}</td>)}</tr>)}</tbody>
-        </table>
-      </div>
-      <h3>Demonstration sequence</h3>
-      <TableCap n={9}>The Review 3 guideline's seven demonstration stages mapped to this walkthrough.</TableCap>
+      <h3 style={{ marginTop: 0 }}>Demonstration sequence</h3>
+      <TableCap n={8}>The Review 3 guideline's seven demonstration stages mapped to this walkthrough.</TableCap>
       <div className="tablewrap">
         <table>
           <thead><tr><th>Stage (Review 3 §8)</th><th>What to show</th><th>Where</th></tr></thead>

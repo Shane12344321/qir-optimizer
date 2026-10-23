@@ -1,7 +1,7 @@
 // Step-through replay of the optimizer: every rewrite is a frame; the circuit,
 // the QIR text and the explanation stay in sync.
 
-import { useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { BLOCK_REASONS, emitModule, RULES, type RewriteEvent } from '@core';
 import { rowKeys, layoutCircuit } from '../lib/circuit';
 import type { RunOk } from '../lib/run';
@@ -20,9 +20,11 @@ interface Props {
   title?: string;
   colW?: number;
   rowH?: number;
+  /** Plain-words description of the circuit, shown beside it. */
+  about?: ReactNode;
 }
 
-export function Stepper({ run, showCode = true, startAtEnd = false, autoplay = false, codeHeight = 360, title, colW, rowH }: Props) {
+export function Stepper({ run, showCode = true, startAtEnd = false, autoplay = false, codeHeight = 360, title, colW, rowH, about }: Props) {
   const { result, input } = run;
   const events = result.snapshots.map((s) => s.event);
   // Frames: 0 = input; k in 1..n = just before rewrite k (highlighted); n + 1 = final output.
@@ -132,7 +134,14 @@ export function Stepper({ run, showCode = true, startAtEnd = false, autoplay = f
         )}
       </div>
       <div className="plate-body" style={{ paddingBottom: 6 }}>
-        <Circuit module={frameModule} marks={marks} rowOrder={rows} minCols={minCols} colW={colW} rowH={rowH} />
+        {about ? (
+          <div className="with-about">
+            <Circuit module={frameModule} marks={marks} rowOrder={rows} minCols={minCols} colW={colW} rowH={rowH} />
+            <div className="about">{about}</div>
+          </div>
+        ) : (
+          <Circuit module={frameModule} marks={marks} rowOrder={rows} minCols={minCols} colW={colW} rowH={rowH} />
+        )}
       </div>
       {showCode && (
         <div style={{ borderTop: '1px solid var(--rule)' }}>

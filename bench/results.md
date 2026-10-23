@@ -4,6 +4,8 @@ Noise model: depolarizing p1=0.002, p2=0.015, readout=0.01. ESP = estimated succ
 
 | Benchmark | Qubits | Gates | Adjacent-only | Peephole (DAG) | Full (hybrid) | Reduction | 2-qubit | Blocks | Equivalent | ESP | Simulated success |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|:---:|---:|---:|
+| hybrid-demo | 3 | 5 | 3 | 3 | 2 | 60% | 1 → 0 | 3 → 1 | ✓ | 93.4% → 96.6% | 93.6% → 95.9% |
+| hybrid-demo-superposition | 3 | 5 | 3 | 3 | 3 | 40% | 1 → 1 | 3 → 3 | ✓ | 93.4% → 93.8% | 93.9% → 94.5% |
 | basics | 3 | 15 | 9 | 7 | 7 | 53% | 3 → 1 | 1 → 1 | ✓ | 86.5% → 93.0% | 95.4% → 95.2% |
 | adder | 11 | 30 | 30 | 30 | 3 | 90% | 25 → 0 | 3 → 1 | ✓ | 38.8% → 93.6% | 58.7% → 93.4% |
 | adder-superposition | 11 | 30 | 30 | 30 | 21 | 30% | 25 → 17 | 3 → 1 | ✓ | 38.8% → 52.6% | 70.2% → 81.7% |

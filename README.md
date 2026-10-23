@@ -20,7 +20,7 @@ any QIR (.ll) ─► QIR reader ─► wire dependences ─► passes to a fixed
 
 ```bash
 npm ci
-npm test                                   # 65 tests: rule soundness, property tests, LLVM verification
+npm test                                   # 69 tests: rule soundness, property tests, LLVM verification
 npx tsx src/cli/main.ts opt example:adder  # optimize and explain every rewrite
 npm run dev                                # interactive walkthrough at http://localhost:5188
 ```

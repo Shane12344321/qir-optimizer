@@ -24,5 +24,5 @@ export const SECTIONS: SectionEntry[] = [
   { id: 'eval', num: '10', short: 'Evaluation', Component: Evaluation },
   { id: 'lab', num: '11', short: 'Laboratory', Component: Lab },
   { id: 'limits', num: '12', short: 'Limitations', Component: Limits },
-  { id: 'team', num: '13', short: 'Team and viva', Component: Team },
+  { id: 'team', num: '13', short: 'Demo and viva', Component: Team },
 ];

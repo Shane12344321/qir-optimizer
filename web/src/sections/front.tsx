@@ -16,13 +16,8 @@ export function Abstract() {
     <section className="section wide" id="abstract" data-section aria-labelledby="title">
       <div className="col">
         <h1 id="title">A Hybrid-Aware, Self-Verifying Optimizer for the Quantum Intermediate Representation</h1>
-        <div className="authors">
-          <span>Shane<small>Member 1 · lead, integration</small></span>
-          <span>Member 2<small>front-end</small></span>
-          <span>Member 3<small>optimizer</small></span>
-          <span>Member 4<small>verification</small></span>
-        </div>
-        <div className="affil">BCSE307 Compiler Design · Project Review 3 · Evaluator: Dr Shalini</div>
+
+        <div className="affil">BCSE307 Compiler Design · Project Review 3</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 0.82fr) minmax(0, 1.18fr)', gap: 44, alignItems: 'start' }} className="abs-grid">
           <div>
             <div className="abstract">

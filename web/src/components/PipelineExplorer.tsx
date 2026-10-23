@@ -10,13 +10,13 @@ import { Circuit } from './Circuit';
 import { layoutCircuit, rowKeys } from '../lib/circuit';
 
 const STAGES = [
-  { id: 'tokens', label: 'Tokens', owner: 'M2', what: 'Lexer: characters → tokens with line:column spans.' },
-  { id: 'ast', label: 'AST', owner: 'M2', what: 'Recursive-descent parser: tokens → abstract syntax tree.' },
-  { id: 'sema', label: 'Checked IR', owner: 'M2', what: 'Semantic analysis: symbol tables, bounds and arity checks, constant folding of angles, inline expansion of user gates.' },
-  { id: 'qir', label: 'QIR', owner: 'M2', what: 'IR generation: LLVM IR in QIR Base or Adaptive Profile.' },
-  { id: 'dag', label: 'Wire DAG', owner: 'M3', what: 'QIR parser + dependence analysis: one node per operation, edges along qubit wires (entry block).' },
-  { id: 'opt', label: 'Optimized QIR', owner: 'M3', what: 'Pass manager at fixed point: peephole, hybrid constant propagation, CFG simplification.' },
-  { id: 'out', label: 'Output', owner: 'M4', what: 'Exact simulation of both programs: measurement distributions must match.' },
+  { id: 'tokens', label: 'Tokens', what: 'Lexer: characters → tokens with line:column spans.' },
+  { id: 'ast', label: 'AST', what: 'Recursive-descent parser: tokens → abstract syntax tree.' },
+  { id: 'sema', label: 'Checked IR', what: 'Semantic analysis: symbol tables, bounds and arity checks, constant folding of angles, inline expansion of user gates.' },
+  { id: 'qir', label: 'QIR', what: 'IR generation: LLVM IR in QIR Base or Adaptive Profile.' },
+  { id: 'dag', label: 'Wire DAG', what: 'QIR parser + dependence analysis: one node per operation, edges along qubit wires (entry block).' },
+  { id: 'opt', label: 'Optimized QIR', what: 'Pass manager at fixed point: peephole, hybrid constant propagation, CFG simplification.' },
+  { id: 'out', label: 'Output', what: 'Exact simulation of both programs: measurement distributions must match.' },
 ] as const;
 
 type StageId = (typeof STAGES)[number]['id'];
@@ -71,8 +71,15 @@ function opLines(ops: COp[], names: string[], cnames: string[], depth = 0): stri
   });
 }
 
-export function PipelineExplorer({ initial = 'teleport' }: { initial?: string }) {
-  const choices = EXAMPLES.filter((e) => e.source.includes('OPENQASM'));
+/** Plain-words descriptions of the small programs, shown beside their circuits. */
+export const ABOUT: Record<string, string[]> = {
+  'hybrid-demo': ['Sets q0 to 1 and copies it onto q1.', 'Applies H twice to q2, which does nothing.', 'Measures q1 (always 1) and runs an if-branch only when it reads 0, which never happens.'],
+  basics: ['Three pairs of gates that undo each other.', 'Two look-alike pairs that must stay: an X, or a measurement, sits between them.', 'Two rotations that cancel across a CNOT.'],
+  teleport: ['Moves the state of q0 onto q2 using two measurements and two if-corrections.', 'The measurements are random, so the corrections must stay.'],
+};
+
+export function PipelineExplorer({ initial = 'teleport', only }: { initial?: string; only?: string[] }) {
+  const choices = EXAMPLES.filter((e) => e.source.includes('OPENQASM') && (!only || only.includes(e.id)));
   const [exId, setExId] = useState(initial);
   const [stage, setStage] = useState<StageId>('qir');
   const ex = choices.find((e) => e.id === exId)!;
@@ -145,7 +152,15 @@ export function PipelineExplorer({ initial = 'teleport' }: { initial?: string })
           <span>{showOptimized ? `${result.after.gates} gates (was ${result.before.gates})` : `${result.before.gates} gates · ${compile.circuit.numQubits} qubits`}</span>
         </div>
         <div className="plate-body" style={{ padding: '6px 16px 10px' }}>
-          <Circuit module={showOptimized ? result.module : run.input} rowOrder={rows} minCols={showOptimized ? inputCols : undefined} colW={40} rowH={34} />
+          <div className={ABOUT[exId] ? 'with-about' : undefined}>
+            <Circuit module={showOptimized ? result.module : run.input} rowOrder={rows} minCols={showOptimized ? inputCols : undefined} colW={40} rowH={34} />
+            {ABOUT[exId] && (
+              <div className="about">
+                <h4>What this circuit does</h4>
+                <ol>{ABOUT[exId].map((t) => <li key={t}>{t}</li>)}</ol>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="panes">
@@ -154,7 +169,7 @@ export function PipelineExplorer({ initial = 'teleport' }: { initial?: string })
           <CodeView text={ex.source} lang="qasm" maxHeight={420} />
         </div>
         <div>
-          <div className="pane-h"><span>{info.label}</span><span>owner {info.owner}</span></div>
+          <div className="pane-h"><span>{info.label}</span><span>compiler stage {STAGES.indexOf(info) + 1} of {STAGES.length}</span></div>
           <div className="small" style={{ padding: '8px 14px', borderBottom: '1px solid var(--rule)', color: 'var(--ink-2)' }}>{info.what}</div>
           {body}
         </div>

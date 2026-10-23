@@ -6,6 +6,7 @@ import { AblationChart } from '../components/Charts';
 import { CodeView, type LineMark } from '../components/CodeView';
 import { ErrorDemo } from '../components/ErrorDemo';
 import { EspCurve } from '../components/EspCurve';
+import { Circuit } from '../components/Circuit';
 import { Fuzzer } from '../components/Fuzzer';
 import { GateLegend } from '../components/GateLegend';
 import { Icon } from '../components/Icon';
@@ -14,6 +15,7 @@ import { PipelineExplorer } from '../components/PipelineExplorer';
 import { StateExplorer } from '../components/StateExplorer';
 import { Stepper } from '../components/Stepper';
 import { Studio } from '../components/Studio';
+import { rowKeys } from '../lib/circuit';
 import { runProgram } from '../lib/run';
 import { BENCH, LLVM_OK, pct, REDUCTION, ROWS, TEST_COUNT, TESTS_PASSED, VERIFIED } from '../sections/data';
 import { IfAsked, Say, Scene } from './Scene';
@@ -22,8 +24,20 @@ const Q = (body: string, n = 2) => `OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg q
 
 // ------------------------------------------------------------------ 1
 
+const DemoAbout = () => (
+  <>
+    <h4>What this circuit does</h4>
+    <ol>
+      <li>Sets q0 to 1 (X) and copies it onto q1 (CX).</li>
+      <li>Applies H to q2 twice, which does nothing.</li>
+      <li>Measures q1 (always 1); the if-branch runs only when it reads 0, so never.</li>
+    </ol>
+  </>
+);
+
+
 function Title() {
-  const run = useMemo(() => runProgram(exampleById('adder').source), []);
+  const run = useMemo(() => runProgram(exampleById('hybrid-demo').source), []);
   return (
     <Scene id="s-title" n={1} className="title-scene" title={<>A self-verifying optimizer for quantum programs</>}
       points={[
@@ -32,11 +46,11 @@ function Title() {
         { lead: 'Proves', rest: 'each change correct before keeping it.' },
       ]}
       notes={<>
-        <Say>Introduce the team and the one-line claim. Press Play on the figure: a 4-bit quantum adder computing 3 + 5 shrinks from 30 gates to 3, and every step is checked. "The rest of this talk explains how."</Say>
+        <Say>Give the one-line claim, then press Play. A small program of 5 gates and an if-branch shrinks to 2 gates with no branch, and every step is checked. "The rest of this talk explains how."</Say>
         <IfAsked q="How do I drive this?">→ or Space for the next screen, ← for the previous, N hides these notes. Every figure is live.</IfAsked>
       </>}>
-      <p className="byline">BCSE307 Compiler Design · Review 3 · Shane · Member 2 · Member 3 · Member 4</p>
-      {run.ok && <Stepper run={run} codeHeight={150} colW={34} rowH={30} showCode={false} />}
+      <p className="byline">BCSE307 Compiler Design · Project Review 3</p>
+      {run.ok && <Stepper run={run} showCode={false} about={<DemoAbout />} />}
     </Scene>
   );
 }
@@ -212,7 +226,7 @@ function Built() {
         <Say>Click through the stage tabs left to right: tokens, syntax tree, checked program, QIR, dependence graph, optimized QIR, output. "Every stage you see is our code, running live."</Say>
         <IfAsked q="Why not a C++ LLVM pass, as planned in Review 2?">To own every compiler phase, including the front-end, and to run the real engine in this presentation. LLVM is still used, as the checker for our output.</IfAsked>
       </>}>
-      <PipelineExplorer initial="basics" />
+      <PipelineExplorer initial="hybrid-demo" only={['hybrid-demo', 'basics', 'teleport']} />
     </Scene>
   );
 }
@@ -281,10 +295,10 @@ function Safety() {
 
 // ------------------------------------------------------------------ 11
 
-const CHAIN = ['qubit is definitely 0', 'gate it controls never fires: deleted', 'its measurement is always 0', 'the if-condition is always false', 'that block never runs: deleted', 'simpler program, simpler hardware profile'];
+const CHAIN = ['q0 is definitely 1', 'the CX always fires: it becomes a plain X', 'q1 is definitely 1, so its measurement is always 1', 'the if (c == 0) is always false', 'that block never runs: deleted', 'smaller program, no branches left'];
 
 function Known() {
-  const [variant, setVariant] = useState<'adder' | 'adder-superposition'>('adder');
+  const [variant, setVariant] = useState<'hybrid-demo' | 'hybrid-demo-superposition'>('hybrid-demo');
   const run = useMemo(() => runProgram(exampleById(variant).source), [variant]);
   return (
     <Scene id="s-known" n={12} title="Optimization 2: knowing a qubit's value" layout="full"
@@ -294,8 +308,8 @@ function Known() {
         { lead: 'Delete', rest: 'whatever can never happen.' },
       ]}
       notes={<>
-        <Say>Read the chain left to right, then play the adder. "Because the inputs 3 and 5 are known, the compiler works out the whole addition and the overflow check, so 30 gates become 3." Switch to superposition: "now the inputs are unknown, so most gates stay, but the overflow check is still proven impossible and removed."</Say>
-        <IfAsked q="Is this sound with entangled qubits?">Yes. A qubit is only marked known when it holds that value on every run and is not linked to anything unknown. Linked qubits are always "unknown".</IfAsked>
+        <Say>Read the chain, then play. "q0 is set to 1, so the CX always fires: it becomes a plain X. Now q1 is known to be 1, so measuring it always gives 1, the if-condition is always false, and that whole block is deleted." Then switch to the superposition version: "q0 is now random, so nothing about q1 is known. The optimizer keeps the CX and the branch, and says why."</Say>
+        <IfAsked q="Is this sound with entangled qubits?">Yes. A qubit is only marked known when it holds that value on every run and is not linked to anything unknown.</IfAsked>
         <IfAsked q="Which compiler technique is this?">Sparse conditional constant propagation, followed by branch folding, unreachable-block removal and block merging, as in the Dragon Book, with qubits as the constants.</IfAsked>
       </>}>
       <ol className="chain" aria-label="How one known qubit simplifies a program">
@@ -306,11 +320,22 @@ function Known() {
           </Fragment>
         ))}
       </ol>
-      <div className="seg" role="group" aria-label="Adder inputs" style={{ margin: '4px 0 12px' }}>
-        <button className="btn" aria-pressed={variant === 'adder'} onClick={() => setVariant('adder')}>3 + 5, inputs known</button>
-        <button className="btn" aria-pressed={variant === 'adder-superposition'} onClick={() => setVariant('adder-superposition')}>inputs in superposition</button>
+      <div className="seg" role="group" aria-label="Program version" style={{ margin: '4px 0 12px' }}>
+        <button className="btn" aria-pressed={variant === 'hybrid-demo'} onClick={() => setVariant('hybrid-demo')}>q0 set to 1 (known)</button>
+        <button className="btn" aria-pressed={variant === 'hybrid-demo-superposition'} onClick={() => setVariant('hybrid-demo-superposition')}>q0 in superposition (unknown)</button>
       </div>
-      {run.ok && <Stepper run={run} codeHeight={200} colW={40} rowH={32} />}
+      {run.ok && (
+        <Stepper run={run} codeHeight={200} about={variant === 'hybrid-demo' ? <DemoAbout /> : (
+          <>
+            <h4>What this circuit does</h4>
+            <ol>
+              <li>Puts q0 in a 50/50 mix (H) and links q1 to it (CX).</li>
+              <li>Applies H to q2 twice, which does nothing.</li>
+              <li>Measures q1, which is random, so the if-branch may run.</li>
+            </ol>
+          </>
+        )} />
+      )}
     </Scene>
   );
 }
@@ -339,34 +364,40 @@ function Proof() {
 
 // ------------------------------------------------------------------ 13
 
-const NOVEL: [string, string, string, string, string][] = [
-  ['LLVM / QAT', 'QIR', 'limited', 'no', 'no'],
-  ['Qiskit, tket', 'circuits', 'yes', 'partial', 'no'],
-  ['RPO (CGO 2021)', 'circuits', 'yes', 'yes', 'no'],
-  ['QCP (SAS 2023)', 'circuits', 'yes', 'yes, more precise', 'no'],
-  ['Branch-aware QCP (2026)', 'dynamic circuits', 'yes', 'yes', 'paper proof'],
-  ['This project', 'QIR, with branches', 'yes', 'yes, into classical code', 'every rewrite'],
-];
+
+const COMPARE = [
+  { key: 'llvm', title: 'LLVM optimizer', sub: 'no gate knowledge', opts: { cancel: false, commute: false, merge: false, qconst: false, cfg: false }, verdict: 'Keeps everything: gate calls are opaque to it.' },
+  { key: 'circuit', title: 'Gate rules only', sub: 'what circuit optimizers do', opts: { qconst: false, cfg: false }, verdict: 'Removes the H pair, but cannot see that the branch is dead.' },
+  { key: 'full', title: 'This project', sub: 'gate rules + qubit values + branches', opts: {}, verdict: 'Also turns the CX into X, proves the branch dead and deletes it.' },
+] as const;
 
 function New() {
+  const src = exampleById('hybrid-demo').source;
+  const runs = useMemo(() => COMPARE.map((c) => ({ ...c, run: runProgram(src, c.opts) })), [src]);
   return (
-    <Scene id="s-new" n={14} title="What is new"
+    <Scene id="s-new" n={14} title="How we are different" layout="full"
       points={[
-        { lead: 'Not new:', rest: 'cancelling gates, tracking qubit values.' },
-        { lead: 'New:', rest: 'doing it directly on QIR, and carrying it through branches and classical code.' },
-        { lead: 'New:', rest: 'a proof of every single change, built in.' },
+        { lead: 'Same program,', rest: 'three kinds of optimizer.' },
+        { lead: 'Others stop at the gates;', rest: 'we follow qubit values into the if-statements.' },
+        { lead: 'And every change', rest: 'is proven, not assumed.' },
       ]}
       notes={<>
-        <Say>"We are honest about prior work: the ideas exist on circuits. Our contribution is the layer, QIR with its real branches, and the built-in proof."</Say>
-        <IfAsked q="Isn't QCP more powerful?">On entangled qubits, yes, it tracks more. Our contribution is integration on QIR, not a more precise analysis; plugging in a QCP-style analysis is future work.</IfAsked>
+        <Say>"Here is the small program from the start, run through three levels of optimizer. LLVM keeps all 5 gates and all 3 blocks, because it does not know what a gate is. Gate rules alone, which is what circuit optimizers like Qiskit do, remove the two H gates but leave the branch. We remove the branch too, because we know q1 is always 1, and the result is proven identical."</Say>
+        <IfAsked q="Hasn't anyone tracked qubit values before?">Yes, on circuits: RPO (CGO 2021) and QCP (SAS 2023), and a 2026 paper on branches. Ours works directly on QIR, folds real LLVM branches with the result, and proves every rewrite. The related-work table is in the appendix.</IfAsked>
       </>}>
-      <div className="plate">
-        <table className="big-table compact">
-          <thead><tr><th>System</th><th>Works on</th><th>Gate rules</th><th>Uses qubit values</th><th>Proves changes</th></tr></thead>
-          <tbody>
-            {NOVEL.map((r) => <tr key={r[0]} className={r[0] === 'This project' ? 'us' : undefined}>{r.map((c, i) => <td key={i}>{i === 0 ? <strong>{c}</strong> : c}</td>)}</tr>)}
-          </tbody>
-        </table>
+      <div className="compare">
+        {runs.map((c) => c.run.ok && (
+          <div key={c.key} className={`plate${c.key === 'full' ? ' us' : ''}`}>
+            <div className="pane-h"><span>{c.title}</span><span>{c.sub}</span></div>
+            <div className="plate-body">
+              <Circuit module={c.run.result.module} rowOrder={rowKeys(c.run.input)} colW={40} rowH={34} />
+            </div>
+            <div className="compare-foot">
+              <span className="stats-line"><span><b>{c.run.result.after.gates}</b>gates</span><span><b>{c.run.result.after.blocks}</b>{c.run.result.after.blocks === 1 ? 'block' : 'blocks'}</span><span>{c.run.result.validation?.equivalent ? 'proven equivalent' : ''}</span></span>
+              <p>{c.verdict}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </Scene>
   );
@@ -432,34 +463,6 @@ function Limits() {
   );
 }
 
-// ------------------------------------------------------------------ 17
-
-const TEAM = [
-  ['Shane', 'Lead: pass manager, command line, this presentation', 'Scenes 1–7, 14, 16'],
-  ['Member 2', 'Front-end: lexer, parser, checks, QIR generation', 'Scenes 8–9'],
-  ['Member 3', 'Optimizer: wire rules, qubit-value analysis, branch folding', 'Scenes 10–12'],
-  ['Member 4', 'Verification: simulator, equivalence checks, tests, benchmarks', 'Scenes 13, 15'],
-];
-
-function Team() {
-  return (
-    <Scene id="s-team" n={18} title="Who built what"
-      points={[
-        { lead: 'Four parts,', rest: 'one owner each.' },
-        { lead: 'Each owner', rest: 'demos and defends their part.' },
-        { lead: 'Questions?', rest: 'The appendix below has the full write-up.' },
-      ]}
-      notes={<Say>Each member presents the scenes in their row and opens their own source files if asked. Full viva answers are in the appendix at the bottom of the page.</Say>}>
-      <div className="plate">
-        <table className="big-table compact">
-          <thead><tr><th>Member</th><th>Owns</th><th>Presents</th></tr></thead>
-          <tbody>{TEAM.map((r) => <tr key={r[0]}><td><strong>{r[0]}</strong></td><td>{r[1]}</td><td>{r[2]}</td></tr>)}</tbody>
-        </table>
-      </div>
-    </Scene>
-  );
-}
-
 export interface SceneEntry {
   id: string;
   short: string;
@@ -480,9 +483,8 @@ export const SCENES: SceneEntry[] = [
   { id: 's-safety', short: 'Safety', Component: Safety },
   { id: 's-known', short: 'Known values', Component: Known },
   { id: 's-proof', short: 'Proof', Component: Proof },
-  { id: 's-new', short: 'What is new', Component: New },
+  { id: 's-new', short: 'How we differ', Component: New },
   { id: 's-results', short: 'Results', Component: Results },
   { id: 's-try', short: 'Try it', Component: Try },
   { id: 's-limits', short: 'Limits', Component: Limits },
-  { id: 's-team', short: 'Team', Component: Team },
 ];
