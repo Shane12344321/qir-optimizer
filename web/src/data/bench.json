@@ -1,0 +1,1110 @@
+{
+  "generated": "2026-10-23T08:31:34.456Z",
+  "noise": {
+    "p1": 0.002,
+    "p2": 0.015,
+    "readout": 0.01
+  },
+  "rows": [
+    {
+      "id": "basics",
+      "family": "example",
+      "qubits": 3,
+      "before": {
+        "gates": 15,
+        "twoQubit": 3,
+        "depth": 9,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 9,
+            "twoQubit": 1,
+            "depth": 6,
+            "blocks": 1
+          },
+          "timeMs": 0.5867079999999874,
+          "rewrites": 3
+        },
+        "peephole": {
+          "after": {
+            "gates": 7,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 1
+          },
+          "timeMs": 0.2166249999999934,
+          "rewrites": 4
+        },
+        "full": {
+          "after": {
+            "gates": 7,
+            "twoQubit": 1,
+            "depth": 5,
+            "blocks": 1
+          },
+          "timeMs": 0.6479160000000093,
+          "rewrites": 4
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.8651461156674287,
+      "espAfter": 0.9301677812089583,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9536856299056237,
+      "successAfter": 0.9521516754160594
+    },
+    {
+      "id": "adder",
+      "family": "example",
+      "qubits": 11,
+      "before": {
+        "gates": 30,
+        "twoQubit": 25,
+        "depth": 26,
+        "blocks": 3
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 30,
+            "twoQubit": 25,
+            "depth": 26,
+            "blocks": 3
+          },
+          "timeMs": 0.18508299999999167,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 30,
+            "twoQubit": 25,
+            "depth": 26,
+            "blocks": 3
+          },
+          "timeMs": 0.17475000000001728,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 3,
+            "twoQubit": 0,
+            "depth": 2,
+            "blocks": 1
+          },
+          "timeMs": 0.7302500000000123,
+          "rewrites": 38
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.387940608691847,
+      "espAfter": 0.9358425587345456,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.5872499999999999,
+      "successAfter": 0.9337499999999999
+    },
+    {
+      "id": "adder-superposition",
+      "family": "example",
+      "qubits": 11,
+      "before": {
+        "gates": 30,
+        "twoQubit": 25,
+        "depth": 26,
+        "blocks": 3
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 30,
+            "twoQubit": 25,
+            "depth": 26,
+            "blocks": 3
+          },
+          "timeMs": 0.14812499999993634,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 30,
+            "twoQubit": 25,
+            "depth": 26,
+            "blocks": 3
+          },
+          "timeMs": 0.13816699999995308,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 21,
+            "twoQubit": 17,
+            "depth": 18,
+            "blocks": 1
+          },
+          "timeMs": 0.4448330000000169,
+          "rewrites": 17
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.387940608691847,
+      "espAfter": 0.5259083807046838,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.7024684327560752,
+      "successAfter": 0.8166469181568635
+    },
+    {
+      "id": "grover",
+      "family": "example",
+      "qubits": 3,
+      "before": {
+        "gates": 43,
+        "twoQubit": 4,
+        "depth": 22,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 35,
+            "twoQubit": 4,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.15916700000002493,
+          "rewrites": 4
+        },
+        "peephole": {
+          "after": {
+            "gates": 33,
+            "twoQubit": 4,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.16391599999997197,
+          "rewrites": 5
+        },
+        "full": {
+          "after": {
+            "gates": 33,
+            "twoQubit": 4,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.28587500000003274,
+          "rewrites": 5
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.7485683484197023,
+      "espAfter": 0.7637057265168611,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9136644849961012,
+      "successAfter": 0.9174861696477659
+    },
+    {
+      "id": "teleport",
+      "family": "example",
+      "qubits": 3,
+      "before": {
+        "gates": 8,
+        "twoQubit": 2,
+        "depth": 9,
+        "blocks": 5
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 8,
+            "twoQubit": 2,
+            "depth": 9,
+            "blocks": 5
+          },
+          "timeMs": 0.07650000000012369,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 8,
+            "twoQubit": 2,
+            "depth": 9,
+            "blocks": 5
+          },
+          "timeMs": 0.05491699999993216,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 8,
+            "twoQubit": 2,
+            "depth": 9,
+            "blocks": 5
+          },
+          "timeMs": 0.2052080000000842,
+          "rewrites": 0
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.9024720355234616,
+      "espAfter": 0.9024720355234616,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9424649283024661,
+      "successAfter": 0.9424649283024661
+    },
+    {
+      "id": "adder-3bit",
+      "family": "arithmetic",
+      "qubits": 8,
+      "before": {
+        "gates": 23,
+        "twoQubit": 19,
+        "depth": 19,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 23,
+            "twoQubit": 19,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.09375,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 23,
+            "twoQubit": 19,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.0861250000000382,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 4,
+            "twoQubit": 0,
+            "depth": 2,
+            "blocks": 1
+          },
+          "timeMs": 0.16704200000003766,
+          "rewrites": 23
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.4900688352024692,
+      "espAfter": 0.9529342655005372,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.6555,
+      "successAfter": 0.9532500000000002
+    },
+    {
+      "id": "adder-3bit-superposed",
+      "family": "arithmetic",
+      "qubits": 8,
+      "before": {
+        "gates": 23,
+        "twoQubit": 19,
+        "depth": 19,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 23,
+            "twoQubit": 19,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.10391600000002654,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 23,
+            "twoQubit": 19,
+            "depth": 19,
+            "blocks": 1
+          },
+          "timeMs": 0.08491700000013225,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 17,
+            "twoQubit": 13,
+            "depth": 14,
+            "blocks": 1
+          },
+          "timeMs": 0.19262499999990723,
+          "rewrites": 6
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.4900688352024692,
+      "espAfter": 0.6055497908533207,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.8088258392134939,
+      "successAfter": 0.8790366584266001
+    },
+    {
+      "id": "adder-5bit",
+      "family": "arithmetic",
+      "qubits": 12,
+      "before": {
+        "gates": 37,
+        "twoQubit": 31,
+        "depth": 29,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 37,
+            "twoQubit": 31,
+            "depth": 29,
+            "blocks": 1
+          },
+          "timeMs": 0.12412500000004911,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 37,
+            "twoQubit": 31,
+            "depth": 29,
+            "blocks": 1
+          },
+          "timeMs": 0.10904100000016115,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 6,
+            "twoQubit": 0,
+            "depth": 2,
+            "blocks": 1
+          },
+          "timeMs": 0.2575419999998303,
+          "rewrites": 39
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.31333074487156554,
+      "espAfter": 0.9302387260061027,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.5222499999999999,
+      "successAfter": 0.9377500000000001
+    },
+    {
+      "id": "adder-5bit-superposed",
+      "family": "arithmetic",
+      "qubits": 12,
+      "before": {
+        "gates": 37,
+        "twoQubit": 31,
+        "depth": 29,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 37,
+            "twoQubit": 31,
+            "depth": 29,
+            "blocks": 1
+          },
+          "timeMs": 0.16258299999981318,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 37,
+            "twoQubit": 31,
+            "depth": 29,
+            "blocks": 1
+          },
+          "timeMs": 0.14858400000002803,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 31,
+            "twoQubit": 25,
+            "depth": 24,
+            "blocks": 1
+          },
+          "timeMs": 1.0042090000001735,
+          "rewrites": 6
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.31333074487156554,
+      "espAfter": 0.3871647274744633,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.7933250005389801,
+      "successAfter": 0.8713803998915772
+    },
+    {
+      "id": "adder-7bit",
+      "family": "arithmetic",
+      "qubits": 16,
+      "before": {
+        "gates": 51,
+        "twoQubit": 43,
+        "depth": 39,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 51,
+            "twoQubit": 43,
+            "depth": 39,
+            "blocks": 1
+          },
+          "timeMs": 0.21537499999976717,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 51,
+            "twoQubit": 43,
+            "depth": 39,
+            "blocks": 1
+          },
+          "timeMs": 0.24279099999967002,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 8,
+            "twoQubit": 0,
+            "depth": 2,
+            "blocks": 1
+          },
+          "timeMs": 1.38799999999992,
+          "rewrites": 55
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.200331358841068,
+      "espAfter": 0.9080837143650483,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.40724999999999995,
+      "successAfter": 0.9177499999999998
+    },
+    {
+      "id": "adder-7bit-superposed",
+      "family": "arithmetic",
+      "qubits": 16,
+      "before": {
+        "gates": 51,
+        "twoQubit": 43,
+        "depth": 39,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 51,
+            "twoQubit": 43,
+            "depth": 39,
+            "blocks": 1
+          },
+          "timeMs": 2.1135419999991427,
+          "rewrites": 0
+        },
+        "peephole": {
+          "after": {
+            "gates": 51,
+            "twoQubit": 43,
+            "depth": 39,
+            "blocks": 1
+          },
+          "timeMs": 3.7239170000029844,
+          "rewrites": 0
+        },
+        "full": {
+          "after": {
+            "gates": 45,
+            "twoQubit": 37,
+            "depth": 34,
+            "blocks": 1
+          },
+          "timeMs": 4.047375000001921,
+          "rewrites": 6
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.200331358841068,
+      "espAfter": 0.24753790433838033,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.200331358841068,
+      "successAfter": 0.24753790433838033
+    },
+    {
+      "id": "qft-roundtrip-3",
+      "family": "qft",
+      "qubits": 3,
+      "before": {
+        "gates": 38,
+        "twoQubit": 12,
+        "depth": 30,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 36,
+            "twoQubit": 12,
+            "depth": 28,
+            "blocks": 1
+          },
+          "timeMs": 0.5812079999959678,
+          "rewrites": 1
+        },
+        "peephole": {
+          "after": {
+            "gates": 32,
+            "twoQubit": 12,
+            "depth": 26,
+            "blocks": 1
+          },
+          "timeMs": 2.063084000001254,
+          "rewrites": 4
+        },
+        "full": {
+          "after": {
+            "gates": 27,
+            "twoQubit": 2,
+            "depth": 17,
+            "blocks": 1
+          },
+          "timeMs": 0.3546669999996084,
+          "rewrites": 17
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.6408688889265521,
+      "espAfter": 0.8687884487161095,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.7437499999999999,
+      "successAfter": 0.89425
+    },
+    {
+      "id": "qft-roundtrip-4",
+      "family": "qft",
+      "qubits": 4,
+      "before": {
+        "gates": 70,
+        "twoQubit": 24,
+        "depth": 46,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 68,
+            "twoQubit": 24,
+            "depth": 44,
+            "blocks": 1
+          },
+          "timeMs": 0.2461669999975129,
+          "rewrites": 1
+        },
+        "peephole": {
+          "after": {
+            "gates": 60,
+            "twoQubit": 24,
+            "depth": 42,
+            "blocks": 1
+          },
+          "timeMs": 0.3101250000036089,
+          "rewrites": 8
+        },
+        "full": {
+          "after": {
+            "gates": 27,
+            "twoQubit": 2,
+            "depth": 17,
+            "blocks": 1
+          },
+          "timeMs": 0.5549579999933485,
+          "rewrites": 46
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.42411608275130197,
+      "espAfter": 0.8601005642289484,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.5702499999999999,
+      "successAfter": 0.89175
+    },
+    {
+      "id": "qft-roundtrip-5",
+      "family": "qft",
+      "qubits": 5,
+      "before": {
+        "gates": 113,
+        "twoQubit": 40,
+        "depth": 62,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 111,
+            "twoQubit": 40,
+            "depth": 60,
+            "blocks": 1
+          },
+          "timeMs": 0.39054200000100536,
+          "rewrites": 1
+        },
+        "peephole": {
+          "after": {
+            "gates": 97,
+            "twoQubit": 40,
+            "depth": 57,
+            "blocks": 1
+          },
+          "timeMs": 0.589417000002868,
+          "rewrites": 14
+        },
+        "full": {
+          "after": {
+            "gates": 78,
+            "twoQubit": 12,
+            "depth": 31,
+            "blocks": 1
+          },
+          "timeMs": 1.3453749999971478,
+          "rewrites": 52
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.24524712605622748,
+      "espAfter": 0.5797773299857701,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.4139999999999999,
+      "successAfter": 0.688
+    },
+    {
+      "id": "random-4q-100g",
+      "family": "random",
+      "qubits": 4,
+      "before": {
+        "gates": 121,
+        "twoQubit": 63,
+        "depth": 82,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 91,
+            "twoQubit": 41,
+            "depth": 62,
+            "blocks": 1
+          },
+          "timeMs": 0.44366699999955017,
+          "rewrites": 15
+        },
+        "peephole": {
+          "after": {
+            "gates": 79,
+            "twoQubit": 41,
+            "depth": 57,
+            "blocks": 1
+          },
+          "timeMs": 1.0046670000010636,
+          "rewrites": 25
+        },
+        "full": {
+          "after": {
+            "gates": 70,
+            "twoQubit": 35,
+            "depth": 48,
+            "blocks": 1
+          },
+          "timeMs": 0.8450410000004922,
+          "rewrites": 36
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.08729371536881936,
+      "espAfter": 0.255456439486162,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9097656457036777,
+      "successAfter": 0.9428174412319141
+    },
+    {
+      "id": "random-dyn-4q-100g",
+      "family": "random",
+      "qubits": 4,
+      "before": {
+        "gates": 114,
+        "twoQubit": 48,
+        "depth": 78,
+        "blocks": 9
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 96,
+            "twoQubit": 40,
+            "depth": 73,
+            "blocks": 9
+          },
+          "timeMs": 0.5158339999979944,
+          "rewrites": 9
+        },
+        "peephole": {
+          "after": {
+            "gates": 77,
+            "twoQubit": 38,
+            "depth": 61,
+            "blocks": 9
+          },
+          "timeMs": 0.6145410000026459,
+          "rewrites": 25
+        },
+        "full": {
+          "after": {
+            "gates": 68,
+            "twoQubit": 33,
+            "depth": 57,
+            "blocks": 9
+          },
+          "timeMs": 1.754916999998386,
+          "rewrites": 39
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.14509740500695217,
+      "espAfter": 0.242955061138708,
+      "llvmVerified": true,
+      "metric": "hellinger",
+      "successBefore": 0.9549595094635035,
+      "successAfter": 0.9687623556534494
+    },
+    {
+      "id": "random-6q-200g",
+      "family": "random",
+      "qubits": 6,
+      "before": {
+        "gates": 253,
+        "twoQubit": 108,
+        "depth": 121,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 189,
+            "twoQubit": 82,
+            "depth": 92,
+            "blocks": 1
+          },
+          "timeMs": 1.0299169999998412,
+          "rewrites": 32
+        },
+        "peephole": {
+          "after": {
+            "gates": 149,
+            "twoQubit": 72,
+            "depth": 75,
+            "blocks": 1
+          },
+          "timeMs": 1.4937919999938458,
+          "rewrites": 60
+        },
+        "full": {
+          "after": {
+            "gates": 134,
+            "twoQubit": 64,
+            "depth": 65,
+            "blocks": 1
+          },
+          "timeMs": 2.178750000006403,
+          "rewrites": 84
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.014703294689972508,
+      "espAfter": 0.08739994741715107,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.014703294689972508,
+      "successAfter": 0.08739994741715107
+    },
+    {
+      "id": "random-dyn-6q-200g",
+      "family": "random",
+      "qubits": 6,
+      "before": {
+        "gates": 232,
+        "twoQubit": 76,
+        "depth": 99,
+        "blocks": 11
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 166,
+            "twoQubit": 48,
+            "depth": 80,
+            "blocks": 11
+          },
+          "timeMs": 3.581833000003826,
+          "rewrites": 33
+        },
+        "peephole": {
+          "after": {
+            "gates": 126,
+            "twoQubit": 48,
+            "depth": 68,
+            "blocks": 11
+          },
+          "timeMs": 1.562832999996317,
+          "rewrites": 61
+        },
+        "full": {
+          "after": {
+            "gates": 103,
+            "twoQubit": 35,
+            "depth": 55,
+            "blocks": 11
+          },
+          "timeMs": 3.53058400000009,
+          "rewrites": 105
+        }
+      },
+      "equivalent": "skipped",
+      "espBefore": 0.05385549448434815,
+      "espAfter": 0.2503119824027936,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.05385549448434815,
+      "successAfter": 0.2503119824027936
+    },
+    {
+      "id": "random-8q-400g",
+      "family": "random",
+      "qubits": 8,
+      "before": {
+        "gates": 518,
+        "twoQubit": 250,
+        "depth": 228,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 372,
+            "twoQubit": 150,
+            "depth": 157,
+            "blocks": 1
+          },
+          "timeMs": 2.5944999999992433,
+          "rewrites": 73
+        },
+        "peephole": {
+          "after": {
+            "gates": 304,
+            "twoQubit": 144,
+            "depth": 138,
+            "blocks": 1
+          },
+          "timeMs": 3.4694579999995767,
+          "rewrites": 123
+        },
+        "full": {
+          "after": {
+            "gates": 288,
+            "twoQubit": 130,
+            "depth": 133,
+            "blocks": 1
+          },
+          "timeMs": 3.983582999993814,
+          "rewrites": 145
+        }
+      },
+      "equivalent": true,
+      "espBefore": 0.00007802997412439507,
+      "espAfter": 0.006594678265126131,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.00007802997412439507,
+      "successAfter": 0.006594678265126131
+    },
+    {
+      "id": "random-dyn-8q-400g",
+      "family": "random",
+      "qubits": 8,
+      "before": {
+        "gates": 465,
+        "twoQubit": 171,
+        "depth": 198,
+        "blocks": 27
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 335,
+            "twoQubit": 101,
+            "depth": 153,
+            "blocks": 27
+          },
+          "timeMs": 3.317332999999053,
+          "rewrites": 65
+        },
+        "peephole": {
+          "after": {
+            "gates": 268,
+            "twoQubit": 101,
+            "depth": 143,
+            "blocks": 27
+          },
+          "timeMs": 3.8452499999984866,
+          "rewrites": 117
+        },
+        "full": {
+          "after": {
+            "gates": 226,
+            "twoQubit": 77,
+            "depth": 122,
+            "blocks": 27
+          },
+          "timeMs": 10.211875000000873,
+          "rewrites": 207
+        }
+      },
+      "equivalent": "skipped",
+      "espBefore": 0.0013978405781081712,
+      "espAfter": 0.03898044806243235,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.0013978405781081712,
+      "successAfter": 0.03898044806243235
+    },
+    {
+      "id": "random-10q-800g",
+      "family": "random",
+      "qubits": 10,
+      "before": {
+        "gates": 1058,
+        "twoQubit": 461,
+        "depth": 399,
+        "blocks": 1
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 754,
+            "twoQubit": 323,
+            "depth": 293,
+            "blocks": 1
+          },
+          "timeMs": 6.329125000003842,
+          "rewrites": 152
+        },
+        "peephole": {
+          "after": {
+            "gates": 573,
+            "twoQubit": 301,
+            "depth": 249,
+            "blocks": 1
+          },
+          "timeMs": 10.729124999998021,
+          "rewrites": 285
+        },
+        "full": {
+          "after": {
+            "gates": 536,
+            "twoQubit": 267,
+            "depth": 226,
+            "blocks": 1
+          },
+          "timeMs": 15.315291999999317,
+          "rewrites": 348
+        }
+      },
+      "equivalent": true,
+      "espBefore": 1.4831745180606884e-8,
+      "espAfter": 0.000031289598666593036,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 1.4831745180606884e-8,
+      "successAfter": 0.000031289598666593036
+    },
+    {
+      "id": "random-dyn-10q-800g",
+      "family": "random",
+      "qubits": 10,
+      "before": {
+        "gates": 956,
+        "twoQubit": 353,
+        "depth": 339,
+        "blocks": 43
+      },
+      "results": {
+        "adjacent-only": {
+          "after": {
+            "gates": 694,
+            "twoQubit": 247,
+            "depth": 262,
+            "blocks": 43
+          },
+          "timeMs": 12.46787499999482,
+          "rewrites": 131
+        },
+        "peephole": {
+          "after": {
+            "gates": 532,
+            "twoQubit": 229,
+            "depth": 227,
+            "blocks": 43
+          },
+          "timeMs": 13.439750000005006,
+          "rewrites": 234
+        },
+        "full": {
+          "after": {
+            "gates": 478,
+            "twoQubit": 194,
+            "depth": 208,
+            "blocks": 43
+          },
+          "timeMs": 38.43787500000326,
+          "rewrites": 335
+        }
+      },
+      "equivalent": "skipped",
+      "espBefore": 0.0000017491315438769092,
+      "espAfter": 0.0005479411199653487,
+      "llvmVerified": true,
+      "metric": "esp",
+      "successBefore": 0.0000017491315438769092,
+      "successAfter": 0.0005479411199653487
+    }
+  ]
+}
