@@ -64,7 +64,7 @@ function Noise() {
       points={[
         { lead: 'Every gate', rest: 'has a small chance of going wrong.' },
         { lead: 'More gates,', rest: 'lower odds of a correct answer.' },
-        { lead: 'Fewer gates', rest: <>is free accuracy. The adder goes from {pct(adder.espBefore)} to {pct(adder.espAfter)} error-free.</> },
+        { lead: 'Fewer gates', rest: <>is free accuracy: a 30-gate adder from our benchmarks goes from {pct(adder.espBefore)} to {pct(adder.espAfter)} error-free.</> },
       ]}
       notes={<>
         <Say>Drag the gates slider. "With realistic error rates, a 300-gate program almost never runs cleanly. A compiler that deletes useless gates improves results without touching the hardware."</Say>

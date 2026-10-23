@@ -40,6 +40,7 @@ npx tsx src/cli/main.ts examples
 
 `web/` is the Review 3 presentation: 17 full-screen scenes, each with one idea, a few short points and a live figure running the real engine. Move with ← / → (or Space), and press `N` to toggle the speaker notes. The full technical write-up (algorithms, related work, every benchmark, tests, viva answers, references) is a collapsible appendix at the end.
 
+- `docs/presenter-script.md` is the word-for-word script for every scene, with a suggested speaker split.
 - `npm run dev` serves it locally.
 - `npm run build` writes a static site to `dist/`.
 - `npm run build:single` writes one self-contained `dist-single/index.html` that opens from disk with no network.
